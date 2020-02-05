@@ -1,24 +1,29 @@
 import React from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import { useStaticQuery, Link } from 'gatsby';
 
-export default function Archive() {
-  const data = useStaticQuery(graphql`
-    query BlogPostArchive {
-      allMarkdownRemark {
-        totalCount
-        edges {
-          node {
-            frontmatter {
-              title
-              slug
-            }
-            excerpt
-            id
+const POST_ARCHIVE_QUERY = graphql`
+  query BlogPostArchive {
+    allMarkdownRemark(
+      limit: 5
+      sort: { fields: frontmatter___date, order: DESC }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            slug
+            date(formatString: "MMMM DD, YYYY")
           }
+          excerpt
+          id
         }
       }
     }
-  `);
+  }
+`;
+
+export default function Archive() {
+  const data = useStaticQuery(POST_ARCHIVE_QUERY);
 
   const posts = data.allMarkdownRemark.edges.map(edge => {
     return (
@@ -28,6 +33,7 @@ export default function Archive() {
             {edge.node.frontmatter.title}
           </Link>
         </h3>
+        <small>{edge.node.frontmatter.date}</small>
         <p>{edge.node.excerpt}</p>
       </article>
     );
