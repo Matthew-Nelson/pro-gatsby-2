@@ -14,7 +14,7 @@ export default class postLayout extends Component {
 
 export const query = graphql`
   query PostQuery {
-    markdownRemark(frontmatter: { slug: { eq: "/three-piratesss" } }) {
+    markdownRemark(frontmatter: { slug: { eq: "/three-pirates" } }) {
       html
       frontmatter {
         title
