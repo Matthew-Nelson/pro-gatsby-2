@@ -29,7 +29,7 @@ export default function Archive() {
     return (
       <article key={edge.node.id}>
         <h3>
-          <Link to={edge.node.frontmatter.slug}>
+          <Link to={`/posts${edge.node.frontmatter.slug}`}>
             {edge.node.frontmatter.title}
           </Link>
         </h3>
