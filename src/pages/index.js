@@ -7,9 +7,9 @@ import Listing from '../components/listing';
 const IndexPage = () => (
   <Layout>
     <Listing />
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+    {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
       <AstronautImage />
-    </div>
+    </div> */}
   </Layout>
 );
 

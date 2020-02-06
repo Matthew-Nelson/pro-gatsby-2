@@ -7,11 +7,19 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import Header from './header';
 import Archive from './archive';
 import './layout.css';
+
+const MainLayout = styled.main`
+  max-width: 90%;
+  magin: 0 auto;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+`;
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -34,8 +42,10 @@ const Layout = ({ children }) => {
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        <main>{children}</main>
-        <Archive />
+        <MainLayout>
+          <>{children}</>
+          <Archive />
+        </MainLayout>
         <footer>
           © {new Date().getFullYear()}, Built with
           {` `}

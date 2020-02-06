@@ -1,12 +1,13 @@
 module.exports = {
   siteMetadata: {
-    title: `Level Up Blog`,
+    title: `Pirate Blog`,
     description: `A tutorial for Gatsby so I can do this ish quickly and more efficiently`,
     author: `Matty Ice`,
     hola: `mundo`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
