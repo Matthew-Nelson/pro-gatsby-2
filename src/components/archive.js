@@ -27,22 +27,18 @@ export default function Archive() {
 
   const posts = data.allMarkdownRemark.edges.map(edge => {
     return (
-      <article key={edge.node.id}>
-        <h3>
-          <Link to={`/posts${edge.node.frontmatter.slug}`}>
-            {edge.node.frontmatter.title}
-          </Link>
-        </h3>
-        <small>{edge.node.frontmatter.date}</small>
-        <p>{edge.node.excerpt}</p>
-      </article>
+      <li key={edge.node.id}>
+        <Link to={`/posts${edge.node.frontmatter.slug}`}>
+          {edge.node.frontmatter.title}
+        </Link>
+      </li>
     );
   });
 
   return (
     <div>
-      <h2>Here is our archive</h2>
-      {posts}
+      <h2>Archive</h2>
+      <ul>{posts}</ul>
     </div>
   );
 }
