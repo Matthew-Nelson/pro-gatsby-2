@@ -69,8 +69,6 @@ const Layout = ({ children, location }) => {
     to: { height: location.pathname === '/' ? 300 : 200 },
   });
 
-  console.log(springProps);
-
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
@@ -98,6 +96,10 @@ const Layout = ({ children, location }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+};
+
+Layout.defaultProps = {
+  location: {},
 };
 
 export default Layout;
