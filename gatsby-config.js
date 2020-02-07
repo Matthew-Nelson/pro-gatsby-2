@@ -23,10 +23,10 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `pro-gatsby-2`,
-        short_name: `starter`,
+        short_name: `pg2`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#524763`,
+        theme_color: `#524763`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
