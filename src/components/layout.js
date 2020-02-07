@@ -18,7 +18,8 @@ const MainLayout = styled.main`
   max-width: 90%;
   magin: 0 auto;
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 40px;
 `;
 
 const Layout = ({ children }) => {
@@ -43,7 +44,7 @@ const Layout = ({ children }) => {
         }}
       >
         <MainLayout>
-          <>{children}</>
+          <div>{children}</div>
           <Archive />
         </MainLayout>
         <footer>
