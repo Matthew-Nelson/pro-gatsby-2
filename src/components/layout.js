@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import { useSpring, animated } from 'react-spring';
 
 import Header from './header';
 import Archive from './archive';
@@ -45,7 +46,7 @@ const FooterLayout = styled.footer`
   }
 `;
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
   const data = useStaticQuery(graphql`
     query layoutQuery {
       site {
@@ -63,10 +64,21 @@ const Layout = ({ children }) => {
     }
   `);
 
+  const springProps = useSpring({
+    from: { height: location.pathname === '/' ? 200 : 300 },
+    to: { height: location.pathname === '/' ? 300 : 200 },
+  });
+
+  console.log(springProps);
+
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <Img fluid={data.file.childImageSharp.fluid} />
+
+      <animated.div style={{ overflow: 'hidden', ...springProps }}>
+        <Img fluid={data.file.childImageSharp.fluid} />
+      </animated.div>
+
       <Container>
         <MainLayout>
           <div>{children}</div>

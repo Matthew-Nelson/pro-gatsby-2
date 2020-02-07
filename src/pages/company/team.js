@@ -3,9 +3,9 @@ import React from 'react';
 import Layout from '../../components/layout';
 import SEO from '../../components/seo';
 
-const Team = () => {
+const Team = ({ location }) => {
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO title="Team Page" />
       <div>
         <h1>The Team!</h1>
