@@ -1,0 +1,1 @@
+So this was easy, its just the same things we always do with this type of thing. I am really curious if there is something I will be able to do to get some react components into netlify CMS's backend.
