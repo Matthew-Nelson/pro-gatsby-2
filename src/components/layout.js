@@ -9,6 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
 import Header from './header';
 import Archive from './archive';
@@ -46,10 +47,17 @@ const FooterLayout = styled.footer`
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
+    query layoutQuery {
       site {
         siteMetadata {
           title
+        }
+      }
+      file(relativePath: { regex: "/bg/" }) {
+        childImageSharp {
+          fluid(maxWidth: 2000) {
+            ...GatsbyImageSharpFluid
+          }
         }
       }
     }
@@ -58,6 +66,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
+      <Img fluid={data.file.childImageSharp.fluid} />
       <Container>
         <MainLayout>
           <div>{children}</div>

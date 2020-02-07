@@ -1,9 +1,9 @@
-import { Link } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
+import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import styled from 'styled-components';
-import gatsbyLogo from '../images/gatsby-icon.png';
 
 const HeaderWrapper = styled.div`
   background: #524763;
@@ -28,29 +28,42 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   display: flex;
   align-items: center;
+  .gatsby-image-wrapper {
+    width: 55px;
+    height: auto;
+    margin-right: 10px;
+  }
 `;
 
-const HeaderImg = styled.img.attrs({
-  src: gatsbyLogo,
-  alt: '',
-})`
-  width: auto;
-  height: 55px;
-  margin-right: 10px;
+const LOGO_QUERY = graphql`
+  query logoQuery {
+    file(relativePath: { regex: "/gatsby-icon/" }) {
+      childImageSharp {
+        fluid(maxWidth: 55) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
 `;
 
-const Header = ({ siteTitle }) => (
-  <HeaderWrapper>
-    <HeaderContainer>
-      <HeaderH1>
-        <StyledLink to="/">
-          <HeaderImg alt="" />
-          {siteTitle}
-        </StyledLink>
-      </HeaderH1>
-    </HeaderContainer>
-  </HeaderWrapper>
-);
+const Header = ({ siteTitle }) => {
+  const { file } = useStaticQuery(LOGO_QUERY);
+  return (
+    <HeaderWrapper>
+      <HeaderContainer>
+        <HeaderH1>
+          <StyledLink to="/">
+            <div className="gatsby-iamge-wrapper">
+              <Img fluid={file.childImageSharp.fluid} fadeIn={false} />
+            </div>
+            <div>{siteTitle}</div>
+          </StyledLink>
+        </HeaderH1>
+      </HeaderContainer>
+    </HeaderWrapper>
+  );
+};
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
