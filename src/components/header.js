@@ -15,7 +15,7 @@ const HeaderWrapper = styled.div`
 
 const HeaderContainer = styled.div`
   margin: 0 auto;
-  max-width: 960;
+  max-width: 960px;
   padding: 1rem;
 `;
 
@@ -23,30 +23,30 @@ const HeaderH1 = styled.h1`
   margin: 0;
 `;
 
+const StyledLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+`;
+
+const HeaderImg = styled.img.attrs({
+  src: gatsbyLogo,
+  alt: '',
+})`
+  width: auto;
+  height: 55px;
+  margin-right: 10px;
+`;
+
 const Header = ({ siteTitle }) => (
   <HeaderWrapper>
     <HeaderContainer>
-      <HeaderH1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-            display: `flex`,
-            alignItems: `center`,
-          }}
-        >
-          <img
-            style={{
-              width: 'auto',
-              height: '55px',
-              marginRight: '10px',
-            }}
-            src={gatsbyLogo}
-            alt=""
-          />
+      <HeaderH1>
+        <StyledLink to="/">
+          <HeaderImg alt="" />
           {siteTitle}
-        </Link>
+        </StyledLink>
       </HeaderH1>
     </HeaderContainer>
   </HeaderWrapper>

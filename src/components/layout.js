@@ -14,6 +14,12 @@ import Header from './header';
 import Archive from './archive';
 import './layout.css';
 
+const Container = styled.div`
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 0 1.0875rem 1.45rem;
+`;
+
 const MainLayout = styled.main`
   margin: 0 auto;
   @media only screen and (min-width: 900px) {
@@ -21,6 +27,20 @@ const MainLayout = styled.main`
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-gap: 40px;
+  }
+`;
+
+const FooterLayout = styled.footer`
+  background: #524763;
+  .container,
+  a {
+    color: white;
+  }
+  a:hover {
+    font-size: 2rem;
+  }
+  &:hover {
+    background: green;
   }
 `;
 
@@ -38,23 +58,19 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
+      <Container>
         <MainLayout>
           <div>{children}</div>
           <Archive />
         </MainLayout>
-        <footer>
+      </Container>
+      <FooterLayout>
+        <Container className="container">
           © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
+        </Container>
+      </FooterLayout>
     </>
   );
 };

@@ -38,6 +38,9 @@ const Post = styled.article`
   p {
     font-size: 0.8rem;
     margin-bottom: 0.5rem;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
   .read-more {
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -61,7 +64,7 @@ const Listing = () => {
         </h3>
         <small>{node.frontmatter.date}</small>
         <p>{node.excerpt}</p>
-        <p style={{ marginBottom: '0' }}>
+        <p>
           <Link className="read-more" to={`/posts${node.frontmatter.slug}`}>
             Read More
           </Link>
