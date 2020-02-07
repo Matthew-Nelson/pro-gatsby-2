@@ -2,6 +2,7 @@
 title: 'PIRATES!'
 date: '2020-02-06'
 slug: '/poppit'
+page_type: 'blog-post'
 ---
 
 # Ello poppit!

@@ -42,8 +42,15 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/images`,
-        name: `images`,
+        path: `${__dirname}/src/team`,
+        name: `team`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/static/img`,
+        name: `uploads`,
       },
     },
     `gatsby-transformer-remark`,

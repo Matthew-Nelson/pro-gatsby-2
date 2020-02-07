@@ -2,6 +2,7 @@
 title: 'SPANISH PIRATES!'
 date: '2020-02-07'
 slug: '/poppit-hola'
+page_type: 'blog-post'
 ---
 
 # Hola poppit!

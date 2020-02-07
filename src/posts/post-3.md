@@ -2,6 +2,7 @@
 title: 'My Third Post About Pirates'
 date: '2020-02-08'
 slug: '/three-pirates'
+page_type: 'blog-post'
 ---
 
 # THree pirates with words!

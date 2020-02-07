@@ -11,21 +11,35 @@ exports.createPages = ({ graphql, actions }) => {
             node {
               frontmatter {
                 slug
+                page_type
               }
             }
           }
         }
       }
     `).then(results => {
+      console.log(results);
+
       results.data.allMarkdownRemark.edges.forEach(({ node }) => {
-        createPage({
-          path: `/posts${node.frontmatter.slug}`,
-          component: path.resolve('./src/components/postLayout.js'),
-          context: {
-            slug: node.frontmatter.slug,
-          },
-        });
+        if (node.frontmatter.page_type === 'blog-post') {
+          createPage({
+            path: `/posts${node.frontmatter.slug}`,
+            component: path.resolve('./src/components/postLayout.js'),
+            context: {
+              slug: node.frontmatter.slug,
+            },
+          });
+        } else if (node.frontmatter.page_type === 'team-member') {
+          createPage({
+            path: `/team${node.frontmatter.slug}`,
+            component: path.resolve('./src/components/teamLayout.js'),
+            context: {
+              slug: node.frontmatter.slug,
+            },
+          });
+        }
       });
+
       resolve();
     });
   });
