@@ -4,8 +4,10 @@ module.exports = {
     description: `A tutorial for Gatsby so I can do this ish quickly and more efficiently`,
     author: `Matty Ice`,
     hola: `mundo`,
+    siteUrl: `https://brave-knuth-81fa7a.netlify.com`,
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
     {
