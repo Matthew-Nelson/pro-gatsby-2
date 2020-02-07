@@ -15,11 +15,13 @@ import Archive from './archive';
 import './layout.css';
 
 const MainLayout = styled.main`
-  max-width: 90%;
-  magin: 0 auto;
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  grid-gap: 40px;
+  margin: 0 auto;
+  @media only screen and (min-width: 900px) {
+    max-width: 95%;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-gap: 40px;
+  }
 `;
 
 const Layout = ({ children }) => {
