@@ -12,14 +12,13 @@ exports.createPages = ({ graphql, actions }) => {
               frontmatter {
                 slug
                 page_type
+                profile_picture
               }
             }
           }
         }
       }
     `).then(results => {
-      console.log(results);
-
       results.data.allMarkdownRemark.edges.forEach(({ node }) => {
         if (node.frontmatter.page_type === 'blog-post') {
           createPage({
@@ -30,11 +29,15 @@ exports.createPages = ({ graphql, actions }) => {
             },
           });
         } else if (node.frontmatter.page_type === 'team-member') {
+          const regexImagePath = `/${node.frontmatter.profile_picture ||
+            'cat.jpg'}/`;
+
           createPage({
             path: `/team${node.frontmatter.slug}`,
             component: path.resolve('./src/components/teamLayout.js'),
             context: {
               slug: node.frontmatter.slug,
+              profile_picture: regexImagePath,
             },
           });
         }
