@@ -28,7 +28,7 @@ export default class teamLayout extends Component {
       <Layout location={location}>
         <h1>{markdownRemark.frontmatter.title}</h1>
         <ProfileImageWrapper>
-          <Img fluid={file.childImageSharp.fluid} />
+          <Img fluid={file.childImageSharp.fluid} style={{ height: '250px' }} />
         </ProfileImageWrapper>
         <div
           dangerouslySetInnerHTML={{
