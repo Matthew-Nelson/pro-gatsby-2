@@ -15,6 +15,6 @@ collections:
     fields:
       - { label: 'Team Member', name: 'title', widget: 'string' }
       - { label: 'Slug', name: 'slug', widget: 'string' }
-      - { label: 'Bio', name: 'bio', widget: 'markdown' }
+      - { label: 'Bio', name: 'body', widget: 'markdown' }
       - { label: 'Page Type', name: 'page_type', widget: 'string' }
       - { label: 'Profile Picture', name: 'profile_picture', widget: 'image' }
