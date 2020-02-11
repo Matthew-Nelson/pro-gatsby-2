@@ -65,8 +65,8 @@ const Layout = ({ children, location }) => {
   `);
 
   const springProps = useSpring({
-    from: { height: location.pathname === '/' ? 200 : 300 },
-    to: { height: location.pathname === '/' ? 300 : 200 },
+    from: { height: location.pathname === '/' ? 450 : 450 },
+    to: { height: location.pathname === '/' ? 450 : 450 },
   });
 
   return (

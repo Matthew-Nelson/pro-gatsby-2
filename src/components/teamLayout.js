@@ -19,7 +19,7 @@ const ProfileImageWrapper = styled.div`
 `;
 export default class teamLayout extends Component {
   render() {
-    const { markdownRemark, file } = this.props.data;
+    const { markdownRemark } = this.props.data;
     const { location } = this.props;
 
     console.log(this.props.data);
@@ -28,11 +28,16 @@ export default class teamLayout extends Component {
       <Layout location={location}>
         <h1>{markdownRemark.frontmatter.title}</h1>
         <ProfileImageWrapper>
-          <Img fluid={file.childImageSharp.fluid} style={{ height: '250px' }} />
+          <Img
+            fluid={
+              markdownRemark.frontmatter.profile_picture.childImageSharp.fluid
+            }
+            style={{ height: '250px' }}
+          />
         </ProfileImageWrapper>
         <div
           dangerouslySetInnerHTML={{
-            __html: markdownRemark.frontmatter.bio,
+            __html: markdownRemark.html,
           }}
         />
       </Layout>
@@ -41,18 +46,18 @@ export default class teamLayout extends Component {
 }
 
 export const query = graphql`
-  query TeamQuery($slug: String!, $profile_picture: String!) {
+  query TeamQuery($slug: String!) {
     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
+      html
       frontmatter {
         title
-        bio
         slug
-      }
-    }
-    file(absolutePath: { regex: $profile_picture }) {
-      childImageSharp {
-        fluid(maxWidth: 2000) {
-          ...GatsbyImageSharpFluid
+        profile_picture {
+          childImageSharp {
+            fluid(maxWidth: 2000) {
+              ...GatsbyImageSharpFluid
+            }
+          }
         }
       }
     }

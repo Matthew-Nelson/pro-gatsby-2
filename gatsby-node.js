@@ -1,4 +1,9 @@
 const path = require('path');
+const { fmImagesToRelative } = require('gatsby-remark-relative-images');
+
+exports.onCreateNode = ({ node }) => {
+  fmImagesToRelative(node);
+};
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -12,13 +17,17 @@ exports.createPages = ({ graphql, actions }) => {
               frontmatter {
                 slug
                 page_type
-                profile_picture
               }
             }
           }
         }
       }
     `).then(results => {
+      if (results.errors) {
+        results.errors.forEach(e => console.error(e.toString()));
+        return reject(results.errors);
+      }
+
       results.data.allMarkdownRemark.edges.forEach(({ node }) => {
         if (node.frontmatter.page_type === 'blog-post') {
           createPage({
@@ -29,21 +38,17 @@ exports.createPages = ({ graphql, actions }) => {
             },
           });
         } else if (node.frontmatter.page_type === 'team-member') {
-          const regexImagePath = `/${node.frontmatter.profile_picture ||
-            'cat.jpg'}/`;
-
           createPage({
             path: `/team${node.frontmatter.slug}`,
             component: path.resolve('./src/components/teamLayout.js'),
             context: {
               slug: node.frontmatter.slug,
-              profile_picture: regexImagePath,
             },
           });
         }
       });
 
-      resolve();
+      return resolve();
     });
   });
 };
